@@ -1,13 +1,13 @@
 {
   "files": [
     {
-      "downloadUrl": "/downloads/gossipmessageendpoint/v1/20140301073101/java/1.16.0-rc/example.com-gossipmessageendpoint-v1-20140301073101-java-1.16.0-rc-sources.jar", 
-      "path": "example.com-gossipmessageendpoint-v1-20140301073101-java-1.16.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/gossipmessageendpoint/v1/20140301094610/java/1.16.0-rc/example.com-gossipmessageendpoint-v1-20140301094610-java-1.16.0-rc-sources.jar", 
+      "path": "example.com-gossipmessageendpoint-v1-20140301094610-java-1.16.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2014-03-01 07:31"
+      "timestamp": "2014-03-01 09:46"
     }, 
     {
-      "path": "example.com-gossipmessageendpoint-v1-20140301073101-java-1.16.0-rc.jar.properties", 
+      "path": "example.com-gossipmessageendpoint-v1-20140301094610-java-1.16.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
@@ -702,5 +702,5 @@
   "packagePath": "gossip", 
   "language_version": "1.16.0-rc", 
   "id": "gossipmessageendpoint:v1", 
-  "revision": 20140301073101
+  "revision": 20140301094610
 }

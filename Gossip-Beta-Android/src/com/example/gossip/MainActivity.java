@@ -20,25 +20,23 @@ public class MainActivity extends Activity {
 	/**
 	 * EndPoint to send GossipMessage;
 	 */
-  Gossipmessageendpoint endpoint;
+  
   
 	@Override
   protected void onCreate(Bundle savedInstanceState) {
-  	Gossipmessageendpoint.Builder builder = new Gossipmessageendpoint.Builder(
-	      AndroidHttp.newCompatibleTransport(), new JacksonFactory(),
-	      null);
-		builder = CloudEndpointUtils.updateBuilder(builder);
-		endpoint = builder.build();
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 		
-		final Button pullButton = (Button) findViewById(R.id.pullButon);
+		Button pullButton = (Button) findViewById(R.id.pullButon);
 		pullButton.setOnClickListener(new View.OnClickListener() {
         public void onClick(View v) {
         	EditText showPlace = (EditText) findViewById(R.id.showPlace);
         	String showMsg = "";
         	try {
+        		Gossipmessageendpoint endpoint = getGossipmessageendpoint();
 						ListGossipMessage listGossipMessage = endpoint.listGossipMessage();
 						for(GossipMessage mesg : listGossipMessage.execute().getItems()) {
-							showMsg = String.format("%s\n(%s,%s):%s\n",
+							showMsg = String.format("%s\n(%s,%s):%s",
 												  showMsg,
 													mesg.getLongitude(),
 													mesg.getLatitude(),
@@ -63,12 +61,19 @@ public class MainActivity extends Activity {
         	message.setMessage(messageContent.getText().toString());
         	message.setLatitude(Integer.valueOf(latitude.getText().toString()));
         	message.setLongitude(Integer.valueOf(longitude.getText().toString()));
+        	System.out.println(String.format("(%s,%s):%s\n",
+							message.getLongitude(),
+							message.getLatitude(),
+							message.getMessage()));
+        	try {
+        		
+        		getGossipmessageendpoint().insertGossipMessage(message).execute();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
         }
     });
-		
-		
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
   }
   
   @Override
@@ -78,21 +83,14 @@ public class MainActivity extends Activity {
     return true;
   }
   
-
-  private String addGossipMessage(String message) {
-  	GossipMessage gossip = new GossipMessage();
-      
-  	// Set the ID of the store where the user is. 
-  	// This would be replaced by the actual ID in the final version of the code. 
-  	gossip.setMessage("Message");
-  	try {
-  		endpoint.insertGossipMessage(gossip);
-  	} catch (IOException e) {
-  		// TODO Auto-generated catch block
-  		e.printStackTrace();
-  	}
-
-  	return null;
+  public Gossipmessageendpoint getGossipmessageendpoint() {
+  	Gossipmessageendpoint endpoint;
+		Gossipmessageendpoint.Builder builder = new Gossipmessageendpoint.Builder(
+	      AndroidHttp.newCompatibleTransport(), new JacksonFactory(),
+	      null);
+		builder = CloudEndpointUtils.updateBuilder(builder);
+		endpoint = builder.build();
+		return endpoint;
   }
 
 }

@@ -71,4 +71,8 @@ public class GossipMessage {
 	public void setLatitude(int latitude) {
 		this.latitude = latitude;
 	}
+  
+  public String toString(){
+  	return String.format("(%s,%s):%s", String.valueOf(longitude), String.valueOf(latitude), message); 
+  }
 }
