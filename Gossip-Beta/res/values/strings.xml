@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Gossip-Beta</string>
+    <string name="action_settings">Settings</string>
+    <string name="longitude"/>
+    <string name="latitude"/>
+    <string name="message"/>
+
+</resources>
