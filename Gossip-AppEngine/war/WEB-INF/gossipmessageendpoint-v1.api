@@ -1,0 +1,229 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "gossipmessageendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 10.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "horsepowerx.com",
+  "ownerName" : "horsepowerx.com",
+  "packagePath" : "gossip",
+  "methods" : {
+    "gossipmessageendpoint.listGossipMessage" : {
+      "path" : "gossipmessage",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.horsepowerx.gossip.GossipMessageEndpoint.listGossipMessage",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "gossipmessageendpoint.insertGossipMessage" : {
+      "path" : "gossipmessage",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.horsepowerx.gossip.GossipMessageEndpoint.insertGossipMessage",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "gossipmessageendpoint.getGossipMessage" : {
+      "path" : "gossipmessage/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.horsepowerx.gossip.GossipMessageEndpoint.getGossipMessage",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "gossipmessageendpoint.removeGossipMessage" : {
+      "path" : "gossipmessage/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.horsepowerx.gossip.GossipMessageEndpoint.removeGossipMessage",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "gossipmessageendpoint.updateGossipMessage" : {
+      "path" : "gossipmessage",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.horsepowerx.gossip.GossipMessageEndpoint.updateGossipMessage",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "CollectionResponse_GossipMessage" : {
+        "id" : "CollectionResponse_GossipMessage",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "GossipMessage"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "GossipMessage" : {
+        "id" : "GossipMessage",
+        "type" : "object",
+        "properties" : {
+          "key" : {
+            "$ref" : "Key"
+          },
+          "message" : {
+            "type" : "string"
+          },
+          "timestamp" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "longitude" : {
+            "type" : "integer"
+          },
+          "latitude" : {
+            "type" : "integer"
+          }
+        }
+      },
+      "Key" : {
+        "id" : "Key",
+        "type" : "object",
+        "properties" : {
+          "kind" : {
+            "type" : "string"
+          },
+          "appId" : {
+            "type" : "string"
+          },
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "namespace" : {
+            "type" : "string"
+          },
+          "complete" : {
+            "type" : "boolean"
+          },
+          "parent" : {
+            "$ref" : "Key"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.horsepowerx.gossip.GossipMessageEndpoint.listGossipMessage" : {
+        "response" : {
+          "$ref" : "CollectionResponse_GossipMessage"
+        }
+      },
+      "com.horsepowerx.gossip.GossipMessageEndpoint.insertGossipMessage" : {
+        "request" : {
+          "$ref" : "GossipMessage"
+        },
+        "response" : {
+          "$ref" : "GossipMessage"
+        }
+      },
+      "com.horsepowerx.gossip.GossipMessageEndpoint.getGossipMessage" : {
+        "response" : {
+          "$ref" : "GossipMessage"
+        }
+      },
+      "com.horsepowerx.gossip.GossipMessageEndpoint.removeGossipMessage" : {
+      },
+      "com.horsepowerx.gossip.GossipMessageEndpoint.updateGossipMessage" : {
+        "request" : {
+          "$ref" : "GossipMessage"
+        },
+        "response" : {
+          "$ref" : "GossipMessage"
+        }
+      }
+    }
+  }
+}
